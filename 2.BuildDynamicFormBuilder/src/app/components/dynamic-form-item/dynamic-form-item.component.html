@@ -1,0 +1,82 @@
+<div [formGroup]="form">
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">{{ formItem.label }}</label>
+        <div class="control">
+          @switch (formItem.fieldType) { @case ('text') {
+          <input
+            [id]="formItem.uuid"
+            [formControlName]="formItem.uuid"
+            [type]="formItem.fieldType"
+            [minlength]="formItem.minLength"
+            [maxlength]="formItem.maxLength"
+            [placeholder]="formItem.placeholder"
+            [(ngModel)]="formItem.value"
+            class="input"
+          />
+          } @case ('number') {
+          <input
+            [id]="formItem.uuid"
+            [formControlName]="formItem.uuid"
+            [type]="formItem.fieldType"
+            [min]="formItem.minLength"
+            [max]="formItem.maxLength"
+            [placeholder]="formItem.placeholder"
+            [(ngModel)]="formItem.value"
+            class="input"
+          />
+          } @case ('dropdown') {
+          <div class="select">
+            <select [formControlName]="formItem.uuid">
+              @for (option of formItem.options; track option) {
+              <option [value]="option.key">{{ option.value }}</option>
+              }
+            </select>
+          </div>
+
+          } @case('radio') {
+          <div class="field">
+            <div class="control">
+              @for(option of formItem.options; track option) {
+              <label class="radio">
+                <input
+                  type="radio"
+                  [name]="formItem.uuid"
+                  [value]="option.value"
+                  [formControlName]="formItem.uuid"
+                />
+                {{ option.value }}
+              </label>
+              }
+            </div>
+          </div>
+          } @case('checkbox') {
+          <div class="field">
+            <div class="control">
+              @for(option of formItem.options; track option) {
+              <label class="checkbox">
+                <input
+                  type="checkbox"
+                  [value]="option.value"
+                  [formControlName]="formItem.uuid"
+                />
+                {{ option.value }}
+              </label>
+              }
+            </div>
+          </div>
+          } } @if (!isValid) {
+          <p class="help is-danger">
+            {{ formItem.label }} is required or validation error
+          </p>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <button class="button" (click)="onClickRemoveItem($event)">X</button>
+      <span class="tag is-info is-lightt">Move me</span>
+    </div>
+  </div>
+</div>

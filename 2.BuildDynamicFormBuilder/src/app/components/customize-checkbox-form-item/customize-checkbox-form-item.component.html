@@ -1,0 +1,28 @@
+<div>
+  <div class="field">
+    <label class="label">Checkbox Value</label>
+    <div class="control columns">
+      <input class="input column" type="text" [(ngModel)]="optionValue" />
+      <button
+        (click)="onClick()"
+        [disabled]="optionValue.length <= 0"
+        class="button column"
+      >
+        Add option
+      </button>
+    </div>
+  </div>
+
+  <table class="table is-bordered is-striped is-narrow">
+    <tbody>
+      <thead>
+        <th>Option</th>
+      </thead>
+      @for(option of newFormItem.options; track option) {
+      <tr>
+        <td>{{ option.value }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

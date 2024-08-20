@@ -1,0 +1,114 @@
+<main class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="fixed-grid has-3-cols">
+        <div class="grid is-gapless">
+          <section class="cell p-4" style="background-color: #48c78e8c">
+            <h1 class="title">Customize Form</h1>
+
+            <!-- Form Type selector-->
+            <div class="field is-grouped">
+              <div class="control">
+                <label class="label">Item Type</label>
+                <div class="select">
+                  <select [(ngModel)]="newFormItem.fieldType">
+                    <option value="text">Text field</option>
+                    <option value="number">Number Field</option>
+                    <option value="radio">Radio</option>
+                    <option value="checkbox">Checkbox</option>
+                    <option value="dropdown">Dropdown</option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="control"
+                style="
+                  display: flex;
+                  align-items: end;
+                  justify-content: center;
+                  padding: 10px;
+                "
+              >
+                <label class="checkbox">
+                  <input type="checkbox" [(ngModel)]="newFormItem.isRequired" />
+                  Is Required?
+                </label>
+              </div>
+            </div>
+
+            <!-- Form Type Label-->
+            <div class="field">
+              <label class="label">Item Label</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  [(ngModel)]="newFormItem.label"
+                />
+              </div>
+            </div>
+
+            @switch(newFormItem.fieldType) { @case('text') {
+            <app-customize-text-form-item
+              [newFormItem]="newFormItem"
+            ></app-customize-text-form-item>
+            }@case('number') {
+            <app-customize-number-form-item
+              [newFormItem]="newFormItem"
+            ></app-customize-number-form-item>
+            }@case('radio') {
+            <app-customize-radio-form-item
+              [newFormItem]="newFormItem"
+            ></app-customize-radio-form-item>
+            }@case('dropdown') {
+            <app-customize-dropdown-form-item
+              [newFormItem]="newFormItem"
+            ></app-customize-dropdown-form-item>
+            }@case('checkbox') {
+            <app-customize-checkbox-form-item
+              [newFormItem]="newFormItem"
+            ></app-customize-checkbox-form-item>
+            }}
+
+            <button class="button" (click)="onCreateFormItem()">
+              Create Form Item
+            </button>
+          </section>
+          <section class="cell has-background-white-ter p-4">
+            <h1 class="title">Preview Form</h1>
+            @if(formItems.length > 0) {
+            <form
+              (ngSubmit)="onSubmit()"
+              [formGroup]="form"
+              cdkDropList
+              (cdkDropListDropped)="drop($event)"
+            >
+              @for (formItem of formItems; track formItem) {
+              <div class="form-row">
+                <app-dynamic-form-item
+                  [form]="form"
+                  [formItem]="formItem"
+                  cdkDrag
+                  (onRemoveItemClicked)="onRemoveItemClicked($event)"
+                ></app-dynamic-form-item>
+              </div>
+              }
+              <div>
+                <button
+                  type="submit"
+                  class="button"
+                  [disabled]="form.valid === false"
+                >
+                  Save data to file
+                </button>
+              </div>
+            </form>
+            } @else {
+            <h3>No elements added</h3>
+            }
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

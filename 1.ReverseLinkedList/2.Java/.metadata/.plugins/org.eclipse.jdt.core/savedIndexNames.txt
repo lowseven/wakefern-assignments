@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\Lowse\OneDrive\Desktop\WakefernAssignments\1.ReverseLinkedList\2.Java\.metadata\.plugins\org.eclipse.jdt.core
+2138788946.index
+1669767852.index
+1865797976.index

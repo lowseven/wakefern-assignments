@@ -1,0 +1,32 @@
+<div>
+  <div class="field">
+    <label class="label">Dropdown Option</label>
+    <div class="control columns">
+      <div class="column">
+        <input class="input" type="text" [(ngModel)]="optionValue" />
+      </div>
+      <div class="column">
+        <button
+          (click)="onClick()"
+          [disabled]="optionValue.length <= 0"
+          class="button"
+        >
+          Add option
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <table class="table is-bordered is-striped is-narrow is-fullwidth" style="margin: 10px 0px;">
+    <tbody>
+      <thead>
+        <th>Dropdown Option</th>
+      </thead>
+      @for(option of newFormItem.options; track option) {
+      <tr>
+        <td>{{ option.value }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

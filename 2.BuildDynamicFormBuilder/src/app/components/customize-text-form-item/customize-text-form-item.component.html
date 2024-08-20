@@ -1,0 +1,49 @@
+<div>
+  <!-- Form Type Default Value-->
+  <div class="field">
+    <label class="label">Item Default Value</label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="newFormItem.defaultValue" />
+    </div>
+  </div>
+
+  <!-- Form Type Placeholder-->
+  <div class="field">
+    <label class="label">Item placeholder</label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="newFormItem.placeholder" />
+    </div>
+  </div>
+
+  <!-- Form Type initial value-->
+  <div class="field">
+    <div class="control">
+      <label class="label">Min length</label>
+      <input
+        class="input"
+        type="number"
+        min="0"
+        max="99"
+        [(ngModel)]="newFormItem.minLength"
+      />
+    </div>
+    <div class="control">
+      <label class="label">Max length</label>
+      <input
+        class="input"
+        type="number"
+        min="0"
+        max="99"
+        [(ngModel)]="newFormItem.maxLength"
+      />
+    </div>
+  </div>
+
+  <!-- Form Type initial value-->
+  <div class="field">
+    <label class="label">Item initial value</label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="newFormItem.value" />
+    </div>
+  </div>
+</div>
